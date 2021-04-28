@@ -1,19 +1,25 @@
 from read_file import main_list, make_index_list, index_dict, make_gup_kods
 from data_funcs import *
 from holt_funcs import *
+from expon_funcs import *
 
 # INPUT MAIN SOURCE DATA
 date_range = [2018, 1, 2020, 12]    # exmpl: [2020, 1, 2020, 12] <-> 2020, january - 2020, december
 col_name = 'rashod_i'   # 'nach_ostatok_i' or 'prihod_i' or 'rashod_i' or 'kon_ostatok_i'
 data_type = 'count'   # 'must be "count" or "cost"'
 period = 6      # Number of months for the average (month = 1, quarter = 3, half_year = 6 )
-vblborka = True     # Use vblborka (True) or not (False)
+vblborka = True     # Use vblborka = True, or not  = False
 vblborka_filename = './files/vblborka_a.csv'
 # ---------------------
 
+# Input Exponential sorce data
+expon_png_dir = './png_expon/'
+expon_csv_file = './result/expon_01_half_year_2021.csv'
+
 # Input Holt sorce data
-png_dir = './png_holt/'
+holt_png_dir = './png_holt/'
 holt_csv_file = './result/holt_01_half_year_2021.csv'
+# ----------------------------
 
 index_list = make_index_list(index_dict, date_range, col_name, data_type)
 period_list = make_period_list(index_dict, date_range, period)
@@ -29,4 +35,6 @@ if period > 1:
 # Main Block
 if __name__ == '__main__':
     # HOLT BLOCK
-    holt_main_func(main_list, png_dir, holt_csv_file, period_list)
+    holt_main_func(main_list, holt_png_dir, holt_csv_file, period_list)
+    # Exponential Block
+    expon_main_func(main_list, expon_png_dir, expon_csv_file, period_list)

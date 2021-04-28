@@ -5,6 +5,6 @@
 test.py
 /files/
 /result/
-/png_holt/
+/png_*
 *.xml
 *.iml
