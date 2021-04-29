@@ -12,7 +12,7 @@ def holt_calculation(list):
     for k in range(0, 101):
         for j in range(0, 101):
             a = k / 100; b = j / 100; ft = []; st = []; yt = []; sig = []
-            ft.append(sum(list)/len(list)) # ft.append(list[0])
+            ft.append(list[0]) # ft.append(sum(list)/len(list))
             st.append(0)
             for i in range(1, len(list)):
                 ft.append(a*list[i] + (1 - a)*(ft[i-1] + st[i-1]))
@@ -49,8 +49,5 @@ def holt_main_func(main_list, png_dir, csv_file, x):
             csv_str = row[0:3]
             csv_str.extend([prognos_list[-1], alfa, beta, sigmax])
             writer.writerow(csv_str)
-            print(data_list)
-            print(prognos_list)
-            print(x)
             make_png_holt(data_list, prognos_list, png_dir, x, alfa, beta, sigmax)
     print('Holt success!')

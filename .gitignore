@@ -5,6 +5,7 @@
 test.py
 /files/
 /result/
-/png_*
+/png_*/
+/png_*/*
 *.xml
 *.iml

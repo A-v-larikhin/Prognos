@@ -5,7 +5,7 @@ def expon_calculation(list):
     sigmax = 0
     for k in range(0, 101):
         a = k / 100; ft = []; yt = []; sig = []
-        ft.append(sum(list) / len(list))
+        ft.append(list[0]) # ft.append(sum(list) / len(list))
         for i in range(1, len(list)):
             ft.append(a * list[i-1] + (1 - a) * ft[i-1])
             yt.append(ft[i])
@@ -34,8 +34,5 @@ def expon_main_func(main_list, png_dir, csv_file, x):
             csv_str = row[0:3]
             csv_str.extend([prognos_list[-1], alfa, sigmax])
             writer.writerow(csv_str)
-            print(data_list)
-            print(prognos_list)
-            print(x)
             make_png_expon(data_list, prognos_list, png_dir, x, alfa, sigmax)
     print('Exponential smoothing success!')
