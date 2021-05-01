@@ -68,8 +68,5 @@ def holtvint_main_func(main_list, png_dir, csv_file, x, period):
             csv_str = row[0:3]
             csv_str.extend([prognos_list[-1], alfa, beta, seas, sigmax])
             writer.writerow(csv_str)
-            print(data_list)
-            print(prognos_list)
-            print(x)
             make_png_holtvint(data_list, prognos_list, png_dir, x, alfa, beta, seas, sigmax)
     print('Holt-Vinters success!')

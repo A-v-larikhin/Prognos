@@ -3,12 +3,13 @@ from data_funcs import *
 from holt_funcs import *
 from expon_funcs import *
 from holtvint_funcs import *
+from aver_funcs import *
 
 # INPUT MAIN SOURCE DATA
 date_range = [2018, 1, 2020, 12]    # exmpl: [2020, 1, 2020, 12] <-> 2020, january - 2020, december
 col_name = 'rashod_i'   # 'nach_ostatok_i' or 'prihod_i' or 'rashod_i' or 'kon_ostatok_i'
 data_type = 'count'   # 'must be "count" or "cost"'
-period = 3      # Number of months for the average (month = 1, quarter = 3, half_year = 6 )
+period = 1      # Number of months for the average (month = 1, quarter = 3, half_year = 6 )
 vblborka = True     # Use vblborka = True, or not  = False
 vblborka_filename = './files/x.csv'
 # ---------------------
@@ -27,6 +28,11 @@ holtvint_png_dir = './png_holtvint/'
 holtvint_csv_file = './result/holtvint_01_quarter_2021.csv'
 # ----------------------------
 
+# Input Linear sorce data
+linear_png_dir = './png_linear/'
+linear_csv_file = './result/linear_01_month_2021.csv'
+# ----------------------------
+
 index_list = make_index_list(index_dict, date_range, col_name, data_type)
 period_list = make_period_list(index_dict, date_range, period)
 main_list = make_clear_list(main_list, index_list)
@@ -40,9 +46,11 @@ if period > 1:
 
 # Main Block
 if __name__ == '__main__':
-    # HOLT BLOCK
+    # -- HOLT BLOCK
     # holt_main_func(main_list, holt_png_dir, holt_csv_file, period_list)
-    # Exponential Block
+    # -- Exponential Block
     # expon_main_func(main_list, expon_png_dir, expon_csv_file, period_list)
-    # Holt-Vinters Block
-    holtvint_main_func(main_list, holtvint_png_dir, holtvint_csv_file, period_list, period)
+    # -- Holt-Vinters Block
+    # holtvint_main_func(main_list, holtvint_png_dir, holtvint_csv_file, period_list, period)
+    # -- Linear trend
+    linear_main_func(main_list, linear_png_dir,  period_list, linear_csv_file)
