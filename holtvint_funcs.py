@@ -40,7 +40,7 @@ def holtvint_calculation(list, period):
                 yt.append(round((ft[-1] + st[-1]) * ss[-cycle_length]))
                 sigma = (sum(sig)/(len(sig) - 1))**0.5
                 if sigmax == 0 or sigma < sigmax:
-                    sigmax = sigma
+                    sigmax = round(sigma, 3)
                     alfa = a
                     beta = b
                     seas = s

@@ -13,7 +13,7 @@ def expon_calculation(list):
         yt.append(round(ft[-1]))
         sigma = (sum(sig) / (len(list) - 1)) ** 0.5
         if sigmax == 0 or sigma < sigmax:
-            sigmax = sigma
+            sigmax = round(sigma, 3)
             alfa = a
             prognos_list = yt
     return prognos_list, alfa, sigmax

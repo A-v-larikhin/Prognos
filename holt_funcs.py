@@ -22,7 +22,7 @@ def holt_calculation(list):
             yt.append(round(ft[-1] + st[-1]))
             sigma = (sum(sig)/(len(sig) - 1))**0.5
             if sigmax == 0 or sigma < sigmax:
-                sigmax = sigma
+                sigmax = round(sigma, 3)
                 alfa = a
                 beta = b
                 prognos_list = yt

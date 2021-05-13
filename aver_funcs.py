@@ -25,7 +25,13 @@ def aver_main_func(main_list, x, csv_file):
     print('Average success!')
 
 
-def linear_calculation(list, x_aver, xx):
+def linear_calculation(list):
+    x = 0
+    xx = 0
+    for i in range(1, len(list) + 1):
+        x += i
+        xx += i * i
+    x_aver = x / len(list)
     xy_sum = 0
     sig = []
     trend_list = []
@@ -40,7 +46,7 @@ def linear_calculation(list, x_aver, xx):
         trend_list.append(yt)
         sig.append((list[i] - trend_list[i-1])**2)
     trend_list.append(round(a + b * len(list)))
-    sigma = (sum(sig) / (len(sig) - 1)) ** 0.5
+    sigma = round((sum(sig) / (len(sig) - 1)) ** 0.5, 3)
     return trend_list, sigma
 
 
@@ -49,16 +55,9 @@ def linear_main_func(main_list, png_dir, period_list, csv_file):
         writer = csv.writer(file, delimiter=';', quotechar='"')
         csv_str = ['kod_gup', 'art.', 'name', 'prognos', 'sigma']
         writer.writerow(csv_str)
-        # ------- begin pre-calculation
-        x = 0; xx = 0
-        for i in range(1, len(main_list[1][3:]) + 1):
-            x += i
-            xx += i*i
-        x_aver = x / len(main_list[1][3:])
-        # ------- end pre-calculation
         for row in main_list:
             row_data = row[3:]
-            trend_list, sigma = linear_calculation(row_data, x_aver, xx)
+            trend_list, sigma = linear_calculation(row_data)
             data_list = row[0:3]
             data_list.extend(row_data)
             prognos_list = row[0:3]

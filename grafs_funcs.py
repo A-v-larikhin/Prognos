@@ -142,3 +142,54 @@ def make_png_trend(data_list, prognos_list, png_dir, x, sigma):
     plt.xlim(0, len(x_data))
     plt.savefig(f'{png_dir}{filename}.png', dpi=200)
     plt.close('all')
+
+
+def make_png_merged(row_pr_hv, hv_alfa, hv_beta, hv_seas, hv_sigma,
+            row_pr_lt, lt_sigma,
+            row_pr_h, h_alfa, h_beta, h_sigma,
+            row_pr_ex, ex_alfa, ex_sigma,
+            png_dir, period_list, data_row,
+            comb_pr, comb_sigma):
+    '''
+    Make graf with different prognosis and save it to png file.
+    :param:
+    :return: make png file (filename = 'kod_gup')
+    '''
+    x_data = period_list
+    x_prognos = period_list[1:]
+    x_prognos.append('след. шаг')
+    graf_name = f'''{data_row[0]}, {data_row[2]}'''
+    filename = data_row[0]
+    ex = row_pr_ex
+    h = row_pr_h
+    hv = row_pr_hv
+    lt = row_pr_lt
+    z = data_row[3:]
+    plt.figure(figsize=(9, 6), dpi=150)
+    plt.subplots_adjust(bottom=0.32)
+    plt.plot(x_data, z, color='#555555', linestyle=':', label='Исходные данные')
+    plt.plot(x_prognos, lt, color='#18af00', label='Линейный тренд')
+    plt.plot(x_prognos, ex, color='#53acff', label='Экспоненциальное сглаживание')
+    plt.plot(x_prognos, h, color='#ff8c38', label='Метод Хольта')
+    plt.plot(x_prognos, hv, color='#c64390', label='Метод Хольта-Винтерса')
+    plt.title(graf_name, fontsize=12)
+    plt.legend()
+    plt.grid(color='#DDDDDD', linewidth=1, linestyle=':')
+    plt.annotate(comb_pr, xy=(x_prognos[-1], comb_pr),# xycoords='axes fraction',
+             xytext=(50, 0), textcoords='offset points',
+             ha="right", va="top",
+             arrowprops=dict(arrowstyle="->"))
+    plt.xlabel('Период', fontsize=12, color='green')
+    plt.tick_params(axis='x', labelsize=8, rotation=70)
+    plt.ylabel('Количество', fontsize=12, color='green')
+    plt.annotate(f'''Исходные данные за период с {x_data[0]} по {x_data[-1]}.
+            Линейный тренд:   Прогноз = {row_pr_lt[-1]},   СКО = {lt_sigma}. 
+            Экспоненциальное сглаживание:   Прогноз = {row_pr_ex[-1]},   СКО = {ex_sigma},   при a = {ex_alfa}.
+            Метод Хольта:   Прогноз = {row_pr_h[-1]},   СКО = {h_sigma},   при a = {h_alfa},   b = {h_beta}.
+            Метод Хольта-Винтерса:   Прогноз = {row_pr_hv[-1]},   СКО = {hv_sigma},   при a = {hv_alfa},   b = {hv_beta},   c = {hv_seas}.
+''',
+    xy=(25, 35), xycoords='figure pixels', fontsize=8)
+    plt.annotate(f'''-- Комбинированный прогноз на следующий шаг: {comb_pr}, СКО: {comb_sigma}. --''',
+                 xy=(25, 25), xycoords='figure pixels', fontsize=9)
+    plt.savefig(f'{png_dir}{filename}.png')
+    plt.close('all')
