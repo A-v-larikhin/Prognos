@@ -7,29 +7,30 @@ from aver_funcs import aver_main_func, linear_main_func
 from merge_funcs import main_merge_func
 
 # INPUT MAIN SOURCE DATA
-date_range = [2018, 1, 2020, 12]    # exmpl: [2020, 1, 2020, 12] <-> 2020, january - 2020, december
+date_range = [2018, 1, 2020, 12]    # exmpl: [2020, 1, 2020, 12] <<-- 2020, january - 2020, december
 col_name = 'rashod_i'   # 'nach_ostatok_i' or 'prihod_i' or 'rashod_i' or 'kon_ostatok_i'
 data_type = 'count'   # 'must be "count" or "cost"'
 period = 6      # Number of months for the average (month = 1, quarter = 3, half_year = 6 )
 vblborka = True     # Use vblborka = True, or not  = False
 vblborka_filename = './files/x_10.csv'
 # ---------------------
-# Input Exponential data
+# Output Exponential result data
 expon_png_dir = './png_expon/'
 expon_csv_file = './result/expon_01_half_year_2021.csv'
-# Input Holt sorce data
+# ---------------------
+# Output Holt result data
 holt_png_dir = './png_holt/'
 holt_csv_file = './result/holt_01_half_year_2021.csv'
 # ----------------------------
-# Input Holt-Vinters data
+# Output Holt-Vinters result data
 holtvint_png_dir = './png_holtvint/'
 holtvint_csv_file = './result/holtvint_01_quarter_2021.csv'
 # ----------------------------
-# Input Linear data
+# Output Linear result data
 linear_png_dir = './png_linear/'
 linear_csv_file = './result/linear_01_month_2021.csv'
 # ----------------------------
-# Input Merged sorce data
+# Output Merged result data
 merged_png_dir = './png_merged/'
 # ----------------------------
 
