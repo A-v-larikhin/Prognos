@@ -3,14 +3,14 @@ from data_funcs import *
 from holt_funcs import holt_main_func
 from expon_funcs import expon_main_func
 from holtvint_funcs import holtvint_main_func
-from aver_funcs import aver_main_func
+from aver_funcs import aver_main_func, linear_main_func
 from merge_funcs import main_merge_func
 
 # INPUT MAIN SOURCE DATA
 date_range = [2018, 1, 2020, 12]    # exmpl: [2020, 1, 2020, 12] <-> 2020, january - 2020, december
 col_name = 'rashod_i'   # 'nach_ostatok_i' or 'prihod_i' or 'rashod_i' or 'kon_ostatok_i'
 data_type = 'count'   # 'must be "count" or "cost"'
-period = 1      # Number of months for the average (month = 1, quarter = 3, half_year = 6 )
+period = 6      # Number of months for the average (month = 1, quarter = 3, half_year = 6 )
 vblborka = True     # Use vblborka = True, or not  = False
 vblborka_filename = './files/x_10.csv'
 # ---------------------
@@ -42,7 +42,7 @@ if vblborka:
     main_list = list_from_vblborka(main_list, gup_kods)
 
 if period > 1:
-    main_list = make_average_list(main_list, period)
+    main_list = make_sum_list(main_list, period)
 
 # Main Block
 if __name__ == '__main__':

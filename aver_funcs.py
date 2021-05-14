@@ -35,8 +35,8 @@ def linear_calculation(list):
     xy_sum = 0
     sig = []
     trend_list = []
-    y_aver = sum(list ) / len(list)
-    for i in range(1, len(list)):
+    y_aver = sum(list) / len(list)
+    for i in range(1, len(list) + 1):
         xy = i * list[i-1]
         xy_sum += xy
     b = (xy_sum - len(list) * x_aver * y_aver) / (xx - len(list) * x_aver * x_aver)

@@ -167,7 +167,8 @@ def make_png_merged(row_pr_hv, hv_alfa, hv_beta, hv_seas, hv_sigma,
     z = data_row[3:]
     plt.figure(figsize=(9, 6), dpi=150)
     plt.subplots_adjust(bottom=0.32)
-    plt.plot(x_data, z, color='#555555', linestyle=':', label='Исходные данные')
+    #plt.plot(x_data, z, color='#555555', linestyle=':', label='Исходные данные')
+    plt.bar(x_data, z, color='#DDDDDD', label='Исходные данные')
     plt.plot(x_prognos, lt, color='#18af00', label='Линейный тренд')
     plt.plot(x_prognos, ex, color='#53acff', label='Экспоненциальное сглаживание')
     plt.plot(x_prognos, h, color='#ff8c38', label='Метод Хольта')

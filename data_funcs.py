@@ -26,9 +26,9 @@ def list_from_vblborka(main_list, gup_kods):
     return new_list
 
 
-def make_average_list(main_list, period):
+def make_sum_list(main_list, period):
     '''
-    Make list with average for the period
+    Make list with sum for the period
     :return: ['kod_gup', 'art.', 'name', count1, count2, ...., count_n]
     '''
     new_main_list = []
@@ -39,8 +39,7 @@ def make_average_list(main_list, period):
             period_sum = 0
             for i in range(period):
                 period_sum += row[col + i]
-            average = round(period_sum / period)
-            tmp_list.append(average)
+            tmp_list.append(period_sum)
         new_main_list.append(tmp_list)
     return new_main_list
 
